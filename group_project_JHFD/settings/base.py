@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'common',
     'users',
+
+    'django_tables2'
 ]
 
 MIDDLEWARE = [

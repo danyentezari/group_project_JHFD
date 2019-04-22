@@ -1,0 +1,56 @@
+{% load render_table from django_tables2 %}
+
+<section class="contact" id="contact-info">
+
+        <head>
+            <title>List of Customers</title>
+        </head>
+        <body>
+            {% render_table people %}
+        </body>
+
+
+
+    <!-- <div class="underlay bg-dark-grey"></div>
+
+    <div class="container">
+        <div class="row row-eq-height">
+            <div class="col-md-8 bg-white">
+                <div class="info p-md-5 p-3">
+                    <h1>Welcome to the A teams algorithm sections</h1>
+                    <div style="height: 20px;"></div>
+                    <h4 class="text-dark-blue mb-4">Sorting Section: <span class="book">Here we will show case Two sorting algorithms one is a merge sort the other is insertion sort</span></h4>
+
+                    <form action="" id="contact-form__" method="POST">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <label>{{form.name.label}}</label>
+                                {{form.name}}
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label>{{form.email.label}}</label>
+                                {{form.email}}
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label>{{form.number.label}}</label>
+                                {{form.number}}
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label>{{form.message.label}}</label>
+                                {{form.message}}
+                            </div>
+
+                            <div class="col-12 mb-4">
+                                <button type="button" id="contact-form-submit" class="btn-tertiary px-5 py-2 book">Submit</input>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+</section>
