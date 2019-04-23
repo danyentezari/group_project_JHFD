@@ -30,34 +30,6 @@ def SortingForm():
     
     return newDic
     
-
-# class SortingForm():
-    
-#     print("hello there")
-#     newDic = []
-
-
-#     # lename="C:/Users/jeremye/Name.csv"
-#     # array=pandas.read_csv(lename)
-#     # namelist=pandas.read_csv(lename, header=None)
-#     # array=array.values.tolist()
-#     # newDic = []
-
-#     # print("hello there 123456")
-
-#     # for i in range(len(array)):
-#     #     # Customer_name = array[i][0]
-#     #     # Customer_points = array[i][0]
-#     #     # #newcustomer = CustomerModel(Customer_name, Customer_points)
-#     #     # #CustomerModel.Customer_points = array[i][1]
-#     #     newDic.append(array[i][0])
-
-#     # print(newDic)   
-#     # newDic
-       
-
-            
-    
 def isStringBigger(A,B):
     lenA=len(A)
     lenB=len(B)
@@ -168,6 +140,7 @@ def sortcolumn(self):
     countsilver=0
     countgold=0
     countplatinum=0
+    
     # for i in range(0,len(self.namelist)):
     #     self.Qtable.setItem(i,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
     #     self.Qtable.setItem(i,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))

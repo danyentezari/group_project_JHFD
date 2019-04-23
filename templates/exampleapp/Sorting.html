@@ -1,25 +1,26 @@
 <!-- {% load render_table from django_tables2 %} -->
 <script type="text/javascript"> 
 
-    var generateSPK = function(){
-    var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    var generateSPK = function () {
+        var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
-    alert("hello test")
+        alert("hello test")
 
-    $.ajax({
+        $.ajax({
             url: '/tester/',
-                type: 'POST',
-                headers: { "X-CSRFToken" : csrfmiddlewaretoken },
-                async: false,
-                cache: false,
-                processData: false,
-                error: function (jqXHR, status, err) {
-                    alert("error")
-                },
-                success: function (response) {
-                    //document.getElementById('server_pub_key').value = response.spk;
-                    alert("done")
-                }
+            type: 'POST',
+            headers: { "X-CSRFToken": csrfmiddlewaretoken },
+            async: false,
+            cache: false,
+            processData: false,
+            error: function (jqXHR, status, err) {
+                alert("error")
+            },
+            success: function (response) {
+                document.getElementById('server_pub_key').value = response;
+                console.log(response)
+                alert("done")
+            }
         });
         return false;
 
@@ -27,6 +28,7 @@
 
 </script>
 <section class="contact" id="contact-info">
+    {% csrf_token %}
     <form action="" id="contact-form__" method="POST">
         {% csrf_token %}
 
@@ -47,9 +49,10 @@
             {% endfor %}
         </body>
 
-        <div class="col-12 mb-4">
-            <button type="submit" class="btn-tertiary px-5 py-2 book">Submit</input>
-        </div>
+        <input id="server_pub_key" type="text"  >
+
+        
+        <button class="btn btn-danger" type="button" onclick="generateSPK()">generate</button>
     </form>
     <button class="btn btn-danger" type="button" onclick="generateSPK()">generate</button>
 </section>

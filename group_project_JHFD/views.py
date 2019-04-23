@@ -17,13 +17,10 @@ from .forms import SortingForm
 
 def dashboard_main(request):
 
-    form = SortingForm()
-
-    print("context")
+    print("context 123132")
     
     context = {
-            "form": form
-        }
+    }
 
     print(context)
 
@@ -43,6 +40,10 @@ def tester_main(request):
 
     print(context)
 
-    template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
+    template = HttpResponse(form)
+    #template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
+
+    #return render_to_response('template.html', {'dictionary': my_dictionary}, context_instance=RequestContext(request)) 
+
 
     return template
