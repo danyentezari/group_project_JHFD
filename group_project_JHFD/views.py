@@ -1,4 +1,3 @@
-
 from django.db.models import Count
 from django.contrib import messages
 from django.conf import settings
@@ -9,33 +8,41 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.dateparse import parse_datetime
 from django.views.generic import TemplateView, View
 
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.template import loader
+
 from .forms import SortingForm
 
-def people(request):
-    return render(request, 'tutorial/people.html', {'people': Person.objects.all()})
 
+def dashboard_main(request):
 
-class SortingView(TemplateView):
+    form = SortingForm()
 
-    template_name = 'exampleapp/itworks.html'
-
-    # def get(self, request, *args, **kwargs):
-
-    #     form = SortingForm()
-
-    #     context = {
-    #         "form": form
-    #     }
-    #     return self.render_to_response(context)
-
-    def post(self, request, *args, **kwargs):
-
-        form = SortingForm(request.POST)
-
-        context = {
-            "people": form.objects.all()
+    print("context")
+    
+    context = {
+            "form": form
         }
 
-        print(context)
+    print(context)
 
-        return self.render_to_response(context)
+    template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
+
+    return template
+         
+def tester_main(request):
+    
+    form = SortingForm()
+
+    print("context")
+    
+    context = {
+            "form": form
+        }
+
+    print(context)
+
+    template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
+
+    return template

@@ -4,21 +4,59 @@ from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
 
 import pandas
+from array import *
+import django_tables2 as tables
+
+# lename="C:/Users/jeremye/Name.csv"
+# array=pandas.read_csv(lename)
+# namelist=pandas.read_csv(lename, header=None)
+# array=array.values.tolist()
+
+# class PersonTable(tables.Table):
+#     class Meta:
+#         model = CustomerModel
 
 
-lename="C:/Users/jeremye/Name.csv"
-array=pandas.read_csv(lename)
-namelist=pandas.read_csv(lename, header=None)
-array=array.values.tolist()
-
-class SortingForm(forms.Form):
-    """The contact form"""
+def SortingForm():
+    print("hello there")
+    newDic = dict() 
 
     lename="C:/Users/jeremye/Name.csv"
     array=pandas.read_csv(lename)
-    namelist=pandas.read_csv(lename, header=None)
     array=array.values.tolist()
     
+    for i in range(len(array)):
+       newDic.update(array)
+    
+    return newDic
+    
+
+# class SortingForm():
+    
+#     print("hello there")
+#     newDic = []
+
+
+#     # lename="C:/Users/jeremye/Name.csv"
+#     # array=pandas.read_csv(lename)
+#     # namelist=pandas.read_csv(lename, header=None)
+#     # array=array.values.tolist()
+#     # newDic = []
+
+#     # print("hello there 123456")
+
+#     # for i in range(len(array)):
+#     #     # Customer_name = array[i][0]
+#     #     # Customer_points = array[i][0]
+#     #     # #newcustomer = CustomerModel(Customer_name, Customer_points)
+#     #     # #CustomerModel.Customer_points = array[i][1]
+#     #     newDic.append(array[i][0])
+
+#     # print(newDic)   
+#     # newDic
+       
+
+            
     
 def isStringBigger(A,B):
     lenA=len(A)
