@@ -78,6 +78,16 @@
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
         var searchValue = document.getElementById('search_id').value
+
+        if(searchValue === ''){
+            alert("Please enter a name to search")
+            return false
+        }
+
+        if(searchValue.indexOf(' ') === -1){
+            alert("Please enter a valid name to search")
+            return false
+        }
         
         $.ajax({
             url: '/Search/',

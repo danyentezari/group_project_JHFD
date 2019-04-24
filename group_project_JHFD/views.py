@@ -30,7 +30,9 @@ def load_main(request):
             "formGold": form[0]['newArrayGold'],
             "formSilver": form[0]['newArraySilver'],
             "formPlatinum": form[0]['newArrayPlatinum'],
-            "sortType" : "Initial Loaded data"
+            "sortType" : "Initial Loaded data",
+            "averageclient": form[0]['averageclient'],
+            "maxclient": form[0]['maxclient'],
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
@@ -46,7 +48,9 @@ def merge_sort(request):
             "formGold": form[0]['newArrayGold'],
             "formSilver": form[0]['newArraySilver'],
             "formPlatinum": form[0]['newArrayPlatinum'],
-            "sortType" : "Alphabetical sort"
+            "sortType" : "Alphabetical sort",
+            "averageclient": form[0]['averageclient'],
+            "maxclient": form[0]['maxclient'],
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
@@ -59,7 +63,9 @@ def insertion_sort(request):
              "formGold": form[0]['newArrayGold'],
             "formSilver": form[0]['newArraySilver'],
             "formPlatinum": form[0]['newArrayPlatinum'],
-            "sortType" : "Point sort"
+            "sortType" : "Point sort",
+            "averageclient": form[0]['averageclient'],
+            "maxclient": form[0]['maxclient'],
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
