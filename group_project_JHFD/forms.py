@@ -143,10 +143,15 @@ def sortcolumn(namelist):
 
     for i in range(len(namelist)):
 
+        #Here we are calculating the average value for the customers and showing the points
+        first_name, last_name = namelist[i][0].split(" ")
         averageclient = averageclient + namelist[i][1] / len(namelist)
-
+        
+        #Here we are calculating the maximum value for the customers and showing their name and max points
         if maxclient < namelist[i][1]:
+            first_name, last_name = namelist[i][0].split(" ")
             maxclient = namelist[i][1]
+            maxClientName = first_name + " " + last_name + " " + str(int(maxclient))
             
         if namelist[i][1] > 5000:
             first_name, last_name = namelist[i][0].split(" ")
@@ -159,7 +164,7 @@ def sortcolumn(namelist):
             newArrayGold.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
 
         newObject = []
-        newObject.append({'newArrayGold': newArrayGold, 'newArraySilver': newArraySilver, 'newArrayPlatinum': newArrayPlatinum, 'averageclient': averageclient, 'maxclient': maxclient})
+        newObject.append({'newArrayGold': newArrayGold, 'newArraySilver': newArraySilver, 'newArrayPlatinum': newArrayPlatinum, 'averageclient': averageclient, 'maxclient': maxClientName})
           
     return newObject
 
