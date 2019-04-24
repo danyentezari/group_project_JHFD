@@ -16,11 +16,13 @@ import json
 
 from .forms import LoadData, main, click_SortDBpoint, click_SortDBalpha
 
+#this is where the main dashboard landing page gets rendered
 def dashboard_main(request):
     context = {}
     template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
     return template 
-         
+
+#this is where the loading data page gets rendered    
 def load_main(request):
     
     form = LoadData()
@@ -33,6 +35,7 @@ def load_main(request):
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
 
+#this is where the alphabetical sort page gets rendered with the various statuses
 def merge_sort(request):
 
     form = click_SortDBalpha()
@@ -48,6 +51,7 @@ def merge_sort(request):
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
 
+#this is where the points sort page gets rendered with the various statuses
 def insertion_sort(request):
     
     form = click_SortDBpoint()
@@ -60,6 +64,7 @@ def insertion_sort(request):
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
 
+#this is where the hash-based search page gets rendered
 def Search(request):
     
     print(request.body)
@@ -72,7 +77,5 @@ def Search(request):
             "form": form,
             "sortType" : "Hash-Based Search"
         }
-    #template = HttpResponse(form)
     template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
-    #return render_to_response('template.html', {'dictionary': my_dictionary}, context_instance=RequestContext(request)) 
     return template

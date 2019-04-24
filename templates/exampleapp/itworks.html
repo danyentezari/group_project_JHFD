@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block body %}
 <script type="text/javascript"> 
 
+    //This is where the load data javascript calls the python load data
     var loadData = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -24,6 +25,7 @@
 
     };
 
+    //This is where the merge sort javascript calls the python api mergesort
     var mergeSort = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -47,6 +49,7 @@
 
     };
 
+    //This is where the insertions sort javascript calls the python api insertionSort
     var insertionSort = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -70,6 +73,7 @@
 
     };
 
+    //This is where the hash-based search javascript calls the python api Search passing a parameter name
     var Search = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -126,7 +130,5 @@
     <div style="padding: 10px" id="tester"></div>
 
 </form>
-
-
 
 {% endblock %}

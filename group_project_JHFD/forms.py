@@ -8,6 +8,8 @@ from array import *
 
 import os
 
+#This is the Sorting section below
+
 def LoadData():
 
     #this is where we do the intial loading of the csv file into to show the data format in the file 
@@ -179,9 +181,9 @@ def click_SortDBpoint():
         namelist=namelist.values.tolist()
 
     return sortcolumn(namelist)
-  
+########################################
 
-#this is the search section below
+#This is the hash-based search section below
 class Node:
     def __init__(self, data=None):
         # Initialise Node
@@ -387,22 +389,7 @@ def main(searchValue):
         print(foundCustomer)
         found.append(foundCustomer)
 
-    return found
-
-    # print("jeremy")
-    # customer_hash_table = HashBasedSearch(elements_to_add)
-    # customer_look_up = searchValue
-    # first_name, last_name = customer_look_up.split(" ")
-
-    # newDic = dict()
-    # found = [] 
-
-    # found_customers = customer_hash_table.search(first_name, last_name)
-    # for foundCustomer in found_customers:
-    #     print(foundCustomer)
-    #     found.append(foundCustomer)
-    
-    # return found
-  
+    return found  
+  ########################################
 
 
