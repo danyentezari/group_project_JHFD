@@ -33,11 +33,14 @@
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
         alert("hello test")
+        var searchValue = document.getElementById('search_id').value
+        alert(searchValue)
 
         $.ajax({
             url: '/tester1/',
             type: 'POST',
             headers: { "X-CSRFToken": csrfmiddlewaretoken },
+            data: JSON.stringify( { 'searchValue' : searchValue } ),
             async: false,
             cache: false,
             processData: false,

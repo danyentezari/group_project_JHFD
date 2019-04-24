@@ -12,6 +12,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
+import json
+
 from .forms import SortingForm, main
 
 def dashboard_main(request):
@@ -32,8 +34,12 @@ def tester_main(request):
 
 def tester1_main(request):
     
-    print(request)
-    form = main()
+    print(request.body)
+
+    b = json.loads(request.body)
+    print(b['searchValue'])
+
+    form = main(b['searchValue'])
     context = {
             "form": form
         }

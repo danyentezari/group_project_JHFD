@@ -148,13 +148,6 @@ def sortcolumn(self):
     #         self.Qtable2.setItem(countsilver,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))                
     #         countsilver=countsilver+1
             
-            
-def click_Search1(self):
-    print('Do1')
-    
-def click_Showdups(self):
-    print('Do2')    
-    
 def click_SortDBalpha(self):
     if len(self.namelist)<100:
 
@@ -320,7 +313,7 @@ class HashBasedSearch:
             self.hash_table[i].display()
 
 
-def main():
+def main(searchValue):
     elements_to_add = [
             ["Bruce", "Armstrong", "2800"],
             ["Doreen", "Bailey" , "50"],
@@ -356,7 +349,7 @@ def main():
 
     print("jeremy")
     customer_hash_table = HashBasedSearch(elements_to_add)
-    customer_look_up = "Tony Singh"
+    customer_look_up = searchValue
     first_name, last_name = customer_look_up.split(" ")
 
     newDic = dict()
@@ -366,8 +359,6 @@ def main():
     for foundCustomer in found_customers:
         print(foundCustomer)
         found.append(foundCustomer)
-
-    print(newDic)
     
     return found
   
