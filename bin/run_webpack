@@ -12,4 +12,4 @@ if [ ! -f webpack-stats.json ]; then
     chmod 777 webpack-stats.json
     echo "webpack-stats.json created"
 fi
-# npm run build
+npm run build
