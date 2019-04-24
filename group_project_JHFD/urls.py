@@ -8,6 +8,7 @@ import django_js_reverse.views
 
 from group_project_JHFD import views
 
+#This is where the url routing is setup in python to call the various api endpoints
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^jsreverse/$', django_js_reverse.views.urls_js, name='js_reverse'),

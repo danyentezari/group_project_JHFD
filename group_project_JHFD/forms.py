@@ -6,11 +6,19 @@ from django.views.decorators.csrf import csrf_exempt
 import pandas
 from array import *
 
+import os
+
+#This is the Sorting section below
+
 def LoadData():
-    
+
+    #this is where we do the intial loading of the csv file into to show the data format in the file 
+    #which has not been sorted at all
+
     newArray = []
-    lename="C:/Users/jeremye/Name.csv"
-    array=pandas.read_csv(lename)
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'Name.csv')
+    array=pandas.read_csv(filename)
     array=array.values.tolist()
     
     return sortcolumn(array)
@@ -146,10 +154,9 @@ def sortcolumn(namelist):
             
 def click_SortDBalpha():
 
-    lename="C:/Users/jeremye/Name.csv"
-    array=pandas.read_csv(lename)
-    array=array.values.tolist()
-    namelist = pandas.read_csv(lename, header=None)
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'Name.csv')
+    namelist = pandas.read_csv(filename, header=None)
 
     if len(namelist)<100:
         namelist=pandas.DataFrame(InsertionSortalphabetical(namelist.values.tolist()))
@@ -162,10 +169,9 @@ def click_SortDBalpha():
             
 def click_SortDBpoint():
     
-    lename="C:/Users/jeremye/Name.csv"
-    array=pandas.read_csv(lename)
-    array=array.values.tolist()
-    namelist = pandas.read_csv(lename, header=None)
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'Name.csv')
+    namelist = pandas.read_csv(filename, header=None)
 
     if len(namelist)<100:
         namelist=pandas.DataFrame(InsertionSort(namelist.values.tolist()))
@@ -175,9 +181,9 @@ def click_SortDBpoint():
         namelist=namelist.values.tolist()
 
     return sortcolumn(namelist)
-  
+########################################
 
-#this is the search section below
+#This is the hash-based search section below
 class Node:
     def __init__(self, data=None):
         # Initialise Node
@@ -383,22 +389,7 @@ def main(searchValue):
         print(foundCustomer)
         found.append(foundCustomer)
 
-    return found
-
-    # print("jeremy")
-    # customer_hash_table = HashBasedSearch(elements_to_add)
-    # customer_look_up = searchValue
-    # first_name, last_name = customer_look_up.split(" ")
-
-    # newDic = dict()
-    # found = [] 
-
-    # found_customers = customer_hash_table.search(first_name, last_name)
-    # for foundCustomer in found_customers:
-    #     print(foundCustomer)
-    #     found.append(foundCustomer)
-    
-    # return found
-  
+    return found  
+  ########################################
 
 
