@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'common',
     'users',
+    'pandas'
 
     #'django_tables2'
 ]
