@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'users',
     'pandas'
 
-    #'django_tables2'
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
