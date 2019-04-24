@@ -25,7 +25,9 @@ def load_main(request):
     
     form = LoadData()
     context = {
-            "form": form,
+            "formGold": form[0]['newArrayGold'],
+            "formSilver": form[0]['newArraySilver'],
+            "formPlatinum": form[0]['newArrayPlatinum'],
             "sortType" : "Initial Loaded data"
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
@@ -34,8 +36,13 @@ def load_main(request):
 def merge_sort(request):
 
     form = click_SortDBalpha()
+
+    print(form[0]['newArrayGold'])
+
     context = {
-            "form": form,
+            "formGold": form[0]['newArrayGold'],
+            "formSilver": form[0]['newArraySilver'],
+            "formPlatinum": form[0]['newArrayPlatinum'],
             "sortType" : "Alphabetical sort"
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
@@ -45,7 +52,9 @@ def insertion_sort(request):
     
     form = click_SortDBpoint()
     context = {
-            "form": form,
+             "formGold": form[0]['newArrayGold'],
+            "formSilver": form[0]['newArraySilver'],
+            "formPlatinum": form[0]['newArrayPlatinum'],
             "sortType" : "Point sort"
         }
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))

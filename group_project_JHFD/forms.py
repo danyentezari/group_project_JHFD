@@ -14,11 +14,12 @@ def LoadData():
     array=pandas.read_csv(lename)
     array=array.values.tolist()
     
-    for i in range(len(array)):
-       first_name, last_name = array[i][0].split(" ")
-       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': array[i][1]})
+    return sortcolumn(array)
+    # for i in range(len(array)):
+    #    first_name, last_name = array[i][0].split(" ")
+    #    newArray.append({'firstname': first_name, 'lastname': last_name, 'points': array[i][1]})
     
-    return newArray
+    # return newArray
     
 def isStringBigger(A,B):
     lenA=len(A)
@@ -125,32 +126,32 @@ def MergeSort(array):
             k=k+1
     return array
 
-def sortcolumn(self):
+def sortcolumn(namelist):
 
-    countsilver=0
-    countgold=0
-    countplatinum=0
+    newArraySilver = []
+    newArrayGold = []
+    newArrayPlatinum = []
 
-    # for i in range(0,len(self.namelist)):
-    #     self.Qtable.setItem(i,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
-    #     self.Qtable.setItem(i,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))
+    for i in range(len(namelist)):
+        
+        if namelist[i][1] > 5000:
+            first_name, last_name = namelist[i][0].split(" ")
+            newArrayPlatinum.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
+        if namelist[i][1] > 1000:
+            first_name, last_name = namelist[i][0].split(" ")
+            newArraySilver.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
+        else:
+            first_name, last_name = namelist[i][0].split(" ")
+            newArrayGold.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
 
-    #     if self.namelist.iloc[i,1] > 5000:
-    #         self.Qtable4.setItem(countplatinum,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
-    #         self.Qtable4.setItem(countplatinum,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))                
-    #         countplatinum=countplatinum+1
-    #     elif self.namelist.iloc[i,1] > 1000:
-    #         self.Qtable3.setItem(countgold,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
-    #         self.Qtable3.setItem(countgold,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))                
-    #         countgold=countgold+1
-    #     else:
-    #         self.Qtable2.setItem(countsilver,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
-    #         self.Qtable2.setItem(countsilver,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))                
-    #         countsilver=countsilver+1
+        newObject = []
+        newObject.append({'newArrayGold': newArrayGold, 'newArraySilver': newArraySilver, 'newArrayPlatinum': newArrayPlatinum})
+          
+    return newObject
+
             
 def click_SortDBalpha():
 
-    newArray = []
     lename="C:/Users/jeremye/Name.csv"
     array=pandas.read_csv(lename)
     array=array.values.tolist()
@@ -163,19 +164,10 @@ def click_SortDBalpha():
         namelist=pandas.DataFrame(MergeSortalphabetical(namelist.values.tolist()))
         namelist=namelist.values.tolist()
     
-    #self.sortcolumn()
-
-    print(namelist)
-
-    for i in range(len(namelist)):
-       first_name, last_name = namelist[i][0].split(" ")
-       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
-    
-    return newArray
+    return sortcolumn(namelist)
             
 def click_SortDBpoint():
-
-    newArray = []
+    
     lename="C:/Users/jeremye/Name.csv"
     array=pandas.read_csv(lename)
     array=array.values.tolist()
@@ -188,15 +180,8 @@ def click_SortDBpoint():
         namelist=pandas.DataFrame(MergeSort(namelist.values.tolist()))            
         namelist=namelist.values.tolist()
 
-    #self.sortcolumn()
-
-    print(namelist)
-
-    for i in range(len(namelist)):
-       first_name, last_name = namelist[i][0].split(" ")
-       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
-    
-    return newArray
+    return sortcolumn(namelist)
+  
 
 #this is the search section below
 class Node:

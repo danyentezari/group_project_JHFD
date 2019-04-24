@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for row in form %}
+                {% for row in formGold %}
                 <tr>
                     <tr>
                         <td>{{ row.firstname }}</td>
@@ -22,9 +22,53 @@
 
                 </tr>
                 {% endfor %}
-
             </tbody>
+        </table>
+        <h1 class="text-center"> Silver customers</h1>
+        <table id="transactions-table" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Points</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in formSilver %}
+                <tr>
+                    <tr>
+                        <td>{{ row.firstname }}</td>
+                        <td>{{ row.lastname }}</td>
+                        <td>{{ row.points }}</td>
+                    </tr>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h1 class="text-center"> Platinum customers</h1>
+        <table id="transactions-table" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Points</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in formPlatinum %}
+                <tr>
+                    <tr>
+                        <td>{{ row.firstname }}</td>
+                        <td>{{ row.lastname }}</td>
+                        <td>{{ row.points }}</td>
+                    </tr>
+
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
