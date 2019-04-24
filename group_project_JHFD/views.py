@@ -60,7 +60,7 @@ def insertion_sort(request):
     template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
 
-def tester1_main(request):
+def Search(request):
     
     print(request.body)
 

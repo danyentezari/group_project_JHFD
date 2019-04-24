@@ -99,7 +99,7 @@
         var searchValue = document.getElementById('search_id').value
         
         $.ajax({
-            url: '/tester1/',
+            url: '/Search/',
             type: 'POST',
             headers: { "X-CSRFToken": csrfmiddlewaretoken },
             data: JSON.stringify( { 'searchValue' : searchValue } ),

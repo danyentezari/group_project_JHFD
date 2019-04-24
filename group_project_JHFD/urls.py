@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'loadData/', views.load_main, name='load_main'),
     url(r'mergeSort/', views.merge_sort, name='merge_sort'),
     url(r'insertionSort/', views.insertion_sort, name='insertion_sort'),
-    url(r'tester1/', views.tester1_main, name='tester1_main'),
+    url(r'Search/', views.Search, name='Search'),
    
 ]
 
