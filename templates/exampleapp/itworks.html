@@ -128,25 +128,31 @@
 <form>
     {% csrf_token %}
 
+    <header style="padding: 10px; text-align: center; background: #eee;">
+        <h1 style="font-weight: bold;" class="text-center"> Team A Project</h1>
+    </header>
     <div style="height: 10px; padding: 10px"></div>
-        <h1 style="padding: 10px" class="text-center"> Team A Project</h1>
-
-        <div style="height: 10px; padding: 10px"></div>
-        <div style="padding: 10px">
-            <button style="width: 200px;" class="btn btn-primary" type="button" onclick="loadData()">Load Data</button>
+        <div style="padding: 10px 20px;"> 
+            <p></p><strong>Information:</strong></p>
+            <ul>
+                <li>Click 'Load Data' button to render the leaderboard </li>
+                <li>Click 'Alphabetical Sort' button to sort the leaderboard in ascending order</li>
+                <li>Click 'Points Sort' button to sort the leaderboard in ascending order</li>
+                <li>To search for a particular customer, type in the user's fullname and click 'Search Customers'.</li>
+            </ul>
         </div>
-
-        <div style="padding: 10px">
-            <button style="width: 200px;" class="btn btn-primary" type="button" onclick="mergeSort()">Alphabetical Sort</button>
+        <div style="padding: 10px; display: flex;">
+            <button style="width: 200px;margin-right: 5px;" class="btn btn-primary" type="button" onclick="loadData()">Load Data</button>
+            <button style="width: 200px;margin-right: 5px;" class="btn btn-primary" type="button" onclick="mergeSort()">Alphabetical Sort</button>
+            <button style="width: 200px;margin-right: 5px;" class="btn btn-primary" type="button" onclick="insertionSort()">Points Sort</button>
         </div>
         
+        <hr/>
         <div style="padding: 10px">
-            <button style="width: 200px" class="btn btn-primary" type="button" onclick="insertionSort()">Point Sort</button>
-        </div>
-        
-        <div style="padding: 10px">
-            <input id="search_id" type="text">
-            <button style="width: 200px" class="btn btn-primary" type="button" onclick="Search()">Search Customer</button>
+            <input id="search_id" style="padding: 5px 10px;width: 350px;" type="text" 
+            placeholder="Enter customer's fullname (e.g, Alan Turing)"/>
+            <button style="background: black; border: solid 1px black;margin:0px;vertical-align: top;" 
+            class="btn btn-primary" type="button" onclick="Search()">Search Customer</button>
         </div>
 
         <div style="height: 10px; padding: 10px"></div>
