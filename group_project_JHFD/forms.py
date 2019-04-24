@@ -15,12 +15,7 @@ def LoadData():
     array=array.values.tolist()
     
     return sortcolumn(array)
-    # for i in range(len(array)):
-    #    first_name, last_name = array[i][0].split(" ")
-    #    newArray.append({'firstname': first_name, 'lastname': last_name, 'points': array[i][1]})
-    
-    # return newArray
-    
+        
 def isStringBigger(A,B):
     lenA=len(A)
     lenB=len(B)
