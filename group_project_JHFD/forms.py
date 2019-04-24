@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 import pandas
 from array import *
-# import django_tables2 as tables
 
 def LoadData():
     
@@ -181,65 +180,50 @@ def click_SortDBpoint():
 #this is the search section below
 class Node:
     def __init__(self, data=None):
+        # Initialise Node
         self.data = data
         self.next = None
 
-class Customers:
 
+class Customers:
     def __init__(self):
+        # Initialise the Customers singly linked list
         self.head = Node()
 
     def append(self, data):
-        # Appends a node to the end
+        # Appends a node to the end of the Customers singly linked list
         new_node = Node(data)
         current = self.head
         while current.next is not None:
             if current.next.data.first_name == new_node.data.first_name and current.next.data.last_name == new_node.data.last_name:
-                current.next.data.count += 1
-                new_node.data.count += 1
+                current.next.data.occurrences += 1
+                new_node.data.occurrences += 1
             current = current.next
         current.next = new_node
 
-    def length(self):
-        # Return the length of the list
-        current = self.head
-        total = 0
-        while current.next is not None:
-            total += 1
-            current = current.next
-        return total
-
-    def search(self, first_name, last_name):
-        # Returns all customers matching the specified data
-        count = 0
+    def find(self, first_name, last_name):
+        # Find and retrieve customer occurrences matching the first and last name
+        occurrences = 0
         customers = []
         current_node = self.head
-        while current_node.next is not None and count < current_node.next.data.count:
+        while current_node.next is not None and occurrences < current_node.next.data.occurrences:
             current_node = current_node.next
             if current_node.data.first_name == first_name and current_node.data.last_name == last_name:
                 customers.append(current_node.data)
-                count += 1
+                occurrences += 1
         return customers
-
-    def display(self):
-        # displays each member of the list
-        elements = []
-        current_node = self.head
-        while current_node.next is not None:
-            current_node = current_node.next
-            elements.append(current_node.data)
-        print(elements)
 
 
 class Customer:
-
     def __init__(self, first_name, last_name, loyalty_points):
+        # Initialise Customer
         self._first_name = first_name
         self._last_name = last_name
-        self._count = 1
+        self._occurrences = 1
         self._loyalty_points = loyalty_points
 
     def __str__(self):
+        # String representations of the Customer object
         return "{} {} {}".format(self.first_name, self.last_name, self.loyalty_points)
 
     @property
@@ -259,12 +243,12 @@ class Customer:
         self._last_name = last_name
 
     @property
-    def count(self):
-        return self._count
+    def occurrences(self):
+        return self._occurrences
 
-    @count.setter
-    def count(self, count):
-        self._count = count
+    @occurrences.setter
+    def occurrences(self, occurrences):
+        self._occurrences = occurrences
 
     @property
     def loyalty_points(self):
@@ -276,30 +260,32 @@ class Customer:
 
 
 class HashBasedSearch:
-
     def __init__(self, elements_to_add=None):
-        # initialise the hash based and populate data structures
-        self.array_size = len(elements_to_add)
+        # Initialise the hash table and populate data structures
+        initial_size = len(elements_to_add)
+        if self.is_prime(initial_size):
+            self.array_size = initial_size
+        else:
+            self.array_size = self.get_next_prime(initial_size)
+
         self.hash_table = []
         for i in range(self.array_size):
             self.hash_table.append(Customers())
         self.load_hash_table(elements_to_add)
 
     def hash_code(self, first_name, last_name):
+        # Produce hash code based on supplied first and last name
         customer_to_hash = first_name.lower() + last_name.lower()
         hash_key_value = 0
         for ch in customer_to_hash:
-            # 'a' has the character code of 97 so subtract
-            # to make our letters start at 1
+            # The character code for 'a' is 97 so subtract so that character code start at 1
             character_code = ord(ch) - 96
-            temp_hash_key_value = hash_key_value
-            # Calculate the hash key using the 26 letters plus blank
+            # Using 26 letters plus blank to calculate the hash key
             hash_key_value = (hash_key_value * 27 + character_code) % self.array_size
-            # print("\n\t\t\t\t" + customer_to_hash + " Hash Key Value " + str(temp_hash_key_value) + " * 27 + Character Code " + str(character_code) + " % array_size " + str(self.array_size) + " = " + str(hash_key_value))
         return hash_key_value
 
     def load_hash_table(self, elements_to_add):
-        # create and insert each customer into the ...
+        # Load the hash table with created Customer
         for i in range(len(elements_to_add)):
             first_name = elements_to_add[i][0]
             last_name = elements_to_add[i][1]
@@ -307,21 +293,44 @@ class HashBasedSearch:
             new_customer = Customer(first_name, last_name, loyalty_point)
             self.append(new_customer)
 
+    def get_next_prime(self, min_number_to_check):
+        # Get the next prime number after minimum number to check
+        i = min_number_to_check
+        while not self.is_prime(i):
+            i += 1
+        return i
+
+    @staticmethod
+    def is_prime(number):
+        # Determine if number is prime
+        if number == 2 or number == 3:
+            return True
+        if number < 2 or number % 2 == 0:
+            return False
+        if number < 9:
+            return True
+        if number % 3 == 0:
+            return False
+        root = int(number ** 0.5)
+        factor = 5
+        while factor <= root:
+            if number % factor == 0:
+                return False
+            if number % (factor + 2) == 0:
+                return False
+            factor += 6
+        return True
+
     def append(self, new_customer):
-        # Generate hash key and append the customer in the linked list specified by the hash key
+        # Generate hash key and append the Customer in the linked list specified by the hash key
         hash_key = self.hash_code(new_customer.first_name, new_customer.last_name)
         self.hash_table[hash_key].append(new_customer)
 
-    def search(self, first_name, last_name):
-        # Retrieve all occurences of customer which matching the specified first name and last name
+    def find(self, first_name, last_name):
+        # Find and retrieve customer occurrences matching the first and last name at location identified by the hash key
         hash_key = self.hash_code(first_name, last_name)
-        customers = self.hash_table[hash_key].search(first_name, last_name)
+        customers = self.hash_table[hash_key].find(first_name, last_name)
         return customers
-
-    def display(self):
-        for i in range(self.array_size):
-            print("Hash Table Index", i)
-            self.hash_table[i].display()
 
 
 def main(searchValue):
@@ -335,9 +344,11 @@ def main(searchValue):
             ["Babara", "Hamilton" , "100"],
             ["Claudia", "Hill" , "200"],
             ["Maureen", "Holmes" , "300"],
+            ["Kyle", "Stone", "40"],
             ["Paul", "Jenkins" , "600"],
             ["Vanessa", "Johnson" , "60"],
             ["James", "Jones" , "700"],
+            ["Kyle", "Stone", "777"],
             ["Patrick", "Lawrence" , "2800"],
             ["Adrian", "Lewis" , "5800"],
             ["Nanny", "Morris" , "1000"],
@@ -352,26 +363,42 @@ def main(searchValue):
             ["Mary", "Smith" , "5800"],
             ["Sheila", "Spencer" , "200"],
             ["Kyle", "Stone" , "20"],
+            ["Kyle", "Stone", "30"],
+            ["Kyle", "Stone", "40"],
+            ["Kyle", "Stone", "50"],
+            ["Kyle", "Stone", "10020"],
             ["Dawn", "Watson" , "40"],
             ["Fred", "Wilkinson" , "800"],
             ["Jim", "Williams" , "1000"],
-            ["Jim", "Williams", "70"],
             ["Paulie", "Malignaggi", "3250"]]
 
-    print("jeremy")
     customer_hash_table = HashBasedSearch(elements_to_add)
     customer_look_up = searchValue
     first_name, last_name = customer_look_up.split(" ")
 
-    newDic = dict()
     found = [] 
 
-    found_customers = customer_hash_table.search(first_name, last_name)
+    found_customers = customer_hash_table.find(first_name, last_name)
     for foundCustomer in found_customers:
         print(foundCustomer)
         found.append(foundCustomer)
-    
+
     return found
+
+    # print("jeremy")
+    # customer_hash_table = HashBasedSearch(elements_to_add)
+    # customer_look_up = searchValue
+    # first_name, last_name = customer_look_up.split(" ")
+
+    # newDic = dict()
+    # found = [] 
+
+    # found_customers = customer_hash_table.search(first_name, last_name)
+    # for foundCustomer in found_customers:
+    #     print(foundCustomer)
+    #     found.append(foundCustomer)
+    
+    # return found
   
 
 
