@@ -1,2 +1,0 @@
-pandas==0.23.4
-django-tables2==2.0.6
