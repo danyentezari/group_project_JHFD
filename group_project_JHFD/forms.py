@@ -12,10 +12,9 @@ import os
 
 def LoadData():
 
-    #this is where we do the intial loading of the csv file into to show the data format in the file 
-    #which has not been sorted at all
+    # This is where we do the intial loading of the csv file into to show 
+    # the data format in the file which has not been sorted at all
 
-    newArray = []
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, 'Name.csv')
     array=pandas.read_csv(filename)
