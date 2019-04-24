@@ -7,18 +7,18 @@ import pandas
 from array import *
 import django_tables2 as tables
 
-def SortingForm():
-    print("hello there")
-    newDic = dict() 
-
+def LoadData():
+    
+    newArray = []
     lename="C:/Users/jeremye/Name.csv"
     array=pandas.read_csv(lename)
     array=array.values.tolist()
     
     for i in range(len(array)):
-       newDic.update(array)
+       first_name, last_name = array[i][0].split(" ")
+       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': array[i][1]})
     
-    return newDic
+    return newArray
     
 def isStringBigger(A,B):
     lenA=len(A)
@@ -148,30 +148,61 @@ def sortcolumn(self):
     #         self.Qtable2.setItem(countsilver,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))                
     #         countsilver=countsilver+1
             
-def click_SortDBalpha(self):
-    if len(self.namelist)<100:
+def click_SortDBalpha():
 
-        self.namelist=pandas.DataFrame(InsertionSortalphabetical(self.namelist.values.tolist()))
+    newArray = []
+    lename="C:/Users/jeremye/Name.csv"
+    array=pandas.read_csv(lename)
+    array=array.values.tolist()
+    namelist = pandas.read_csv(lename, header=None)
+
+    if len(namelist)<100:
+        namelist=pandas.DataFrame(InsertionSortalphabetical(namelist.values.tolist()))
+        namelist=namelist.values.tolist()
     else:
-        self.namelist=pandas.DataFrame(MergeSortalphabetical(self.namelist.values.tolist()))
+        namelist=pandas.DataFrame(MergeSortalphabetical(namelist.values.tolist()))
+        namelist=namelist.values.tolist()
     
-    self.sortcolumn()
+    #self.sortcolumn()
+
+    print(namelist)
+
+    for i in range(len(namelist)):
+       first_name, last_name = namelist[i][0].split(" ")
+       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
+    
+    return newArray
+            
+def click_SortDBpoint():
+
+    newArray = []
+    lename="C:/Users/jeremye/Name.csv"
+    array=pandas.read_csv(lename)
+    array=array.values.tolist()
+    namelist = pandas.read_csv(lename, header=None)
+
+    if len(namelist)<100:
+        namelist=pandas.DataFrame(InsertionSort(namelist.values.tolist()))
+        namelist=namelist.values.tolist()
+    else:
+        namelist=pandas.DataFrame(MergeSort(namelist.values.tolist()))            
+        namelist=namelist.values.tolist()
+
+    #self.sortcolumn()
+
+    print(namelist)
+
+    for i in range(len(namelist)):
+       first_name, last_name = namelist[i][0].split(" ")
+       newArray.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
+    
+    return newArray
 
 #this is the search section below
-
 class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
-            
-def click_SortDBpoint(self):
-    if len(self.namelist)<100:
-        self.namelist=pandas.DataFrame(InsertionSort(self.namelist.values.tolist()))
-    else:
-        self.namelist=pandas.DataFrame(MergeSort(self.namelist.values.tolist()))            
-    
-    self.sortcolumn()
-    
 
 class Customers:
 

@@ -14,22 +14,41 @@ from django.template import loader
 
 import json
 
-from .forms import SortingForm, main
+from .forms import LoadData, main, click_SortDBpoint, click_SortDBalpha
 
 def dashboard_main(request):
     context = {}
     template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
     return template 
          
-def tester_main(request):
+def load_main(request):
     
-    form = SortingForm()
+    form = LoadData()
     context = {
-            "form": form
+            "form": form,
+            "sortType" : "Initial Loaded data"
         }
-    #template = HttpResponse(form)
-    template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
-    #return render_to_response('template.html', {'dictionary': my_dictionary}, context_instance=RequestContext(request)) 
+    template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
+    return template
+
+def merge_sort(request):
+
+    form = click_SortDBalpha()
+    context = {
+            "form": form,
+            "sortType" : "Alphabetical sort"
+        }
+    template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
+    return template
+
+def insertion_sort(request):
+    
+    form = click_SortDBpoint()
+    context = {
+            "form": form,
+            "sortType" : "Point sort"
+        }
+    template = HttpResponse(loader.get_template('exampleapp/Sorting.html').render(context=context, request=request))
     return template
 
 def tester1_main(request):
@@ -41,7 +60,8 @@ def tester1_main(request):
 
     form = main(b['searchValue'])
     context = {
-            "form": form
+            "form": form,
+            "sortType" : "Hash-Based Search"
         }
     #template = HttpResponse(form)
     template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))

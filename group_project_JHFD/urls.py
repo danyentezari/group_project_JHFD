@@ -13,7 +13,9 @@ urlpatterns = [
     url(r'^jsreverse/$', django_js_reverse.views.urls_js, name='js_reverse'),
 
     url(r'^$', views.dashboard_main, name='dashboard'),
-    url(r'tester/', views.tester_main, name='tester_main'),
+    url(r'loadData/', views.load_main, name='load_main'),
+    url(r'mergeSort/', views.merge_sort, name='merge_sort'),
+    url(r'insertionSort/', views.insertion_sort, name='insertion_sort'),
     url(r'tester1/', views.tester1_main, name='tester1_main'),
    
 ]

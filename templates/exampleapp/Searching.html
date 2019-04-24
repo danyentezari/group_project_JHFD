@@ -1,38 +1,30 @@
-<section class="contact bg-dark-grey" id="banner">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-white">
-                <h1 class="text-center"> Results</h1>
+<div class="row mb-5">
+    <div class="col-12 text-white">
+        <h1 class="text-center"> Results: {{sortType}}</h1>
 
-                <body>
-                    
-                </body>
+        <table id="transactions-table" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Points</th>
 
-                <table id="transactions-table" class="table table-hover" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Points</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {% for row in form %}
-                            <tr>
-                                <tr>
-                                    <td>{{ row.first_name }}</td>
-                                    <td>{{ row.last_name }}</td>
-                                    <td>{{ row.loyalty_points }}</td>
-                                </tr>
-        
-                            </tr>
-                            {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in form %}
+                <tr>
+                    <tr>
+                        <td>{{ row.first_name }}</td>
+                        <td>{{ row.last_name }}</td>
+                        <td>{{ row.loyalty_points }}</td>
+                    </tr>
 
-                    </tbody>
+                </tr>
+                {% endfor %}
 
-                </table>
-            </div>
-        </div>
+            </tbody>
+
+        </table>
     </div>
-</section>
+</div>
