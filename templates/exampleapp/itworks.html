@@ -1,7 +1,10 @@
 {% extends 'base.html' %} {% block body %}
 <script type="text/javascript"> 
 
-    //This is where the load data javascript calls the python load data
+    /*
+     * This is where the load data javascript calls the python load data
+     * @returns {undefined}
+     */ 
     var loadData = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -25,7 +28,10 @@
 
     };
 
-    //This is where the merge sort javascript calls the python api mergesort
+    /* 
+     * This is where the merge sort javascript calls the python api mergesort
+     * @returns {undefined}
+     */
     var mergeSort = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -49,7 +55,10 @@
 
     };
 
-    //This is where the insertions sort javascript calls the python api insertionSort
+    /*
+     * This is where the insertions sort javascript calls the python api insertionSort
+     * @returns {undefined}
+     */
     var insertionSort = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -73,7 +82,11 @@
 
     };
 
-    //This is where the hash-based search javascript calls the python api Search passing a parameter name
+    /* 
+     * This is where the hash-based search javascript calls the python api 
+     * Search passing a parameter name.
+     * @returns {undefined}
+     */ 
     var Search = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
@@ -106,27 +119,27 @@
     {% csrf_token %}
 
     <div style="height: 10px; padding: 10px"></div>
-    <h1 style="padding: 10px" class="text-center"> Team A algorithms</h1>
+        <h1 style="padding: 10px" class="text-center"> Team A Project</h1>
 
-    <div style="height: 10px; padding: 10px"></div>
-    <div style="padding: 10px">
-        <button style="width: 200px;" class="btn btn-primary" type="button" onclick="loadData()">Load Data</button>
-    </div>
+        <div style="height: 10px; padding: 10px"></div>
+        <div style="padding: 10px">
+            <button style="width: 200px;" class="btn btn-primary" type="button" onclick="loadData()">Load Data</button>
+        </div>
 
-    <div style="padding: 10px">
-        <button style="width: 200px;" class="btn btn-primary" type="button" onclick="mergeSort()">Alphabetical Sort</button>
-    </div>
-    
-    <div style="padding: 10px">
-        <button style="width: 200px" class="btn btn-primary" type="button" onclick="insertionSort()">Point Sort</button>
-    </div>
-    
-    <div style="padding: 10px">
-        <input id="search_id" type="text">
-        <button style="width: 200px" class="btn btn-primary" type="button" onclick="Search()">Search Customer</button>
-    </div>
+        <div style="padding: 10px">
+            <button style="width: 200px;" class="btn btn-primary" type="button" onclick="mergeSort()">Alphabetical Sort</button>
+        </div>
+        
+        <div style="padding: 10px">
+            <button style="width: 200px" class="btn btn-primary" type="button" onclick="insertionSort()">Point Sort</button>
+        </div>
+        
+        <div style="padding: 10px">
+            <input id="search_id" type="text">
+            <button style="width: 200px" class="btn btn-primary" type="button" onclick="Search()">Search Customer</button>
+        </div>
 
-    <div style="height: 10px; padding: 10px"></div>
+        <div style="height: 10px; padding: 10px"></div>
     <div style="padding: 10px" id="tester"></div>
 
 </form>
