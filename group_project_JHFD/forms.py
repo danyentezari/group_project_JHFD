@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import pandas
 from array import *
-import django_tables2 as tables
+# import django_tables2 as tables
 
 def LoadData():
     
