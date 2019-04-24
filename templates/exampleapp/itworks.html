@@ -1,9 +1,92 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base.html' %} {% block body %}
+<script type="text/javascript"> 
+
+    var generateSPK = function () {
+        var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+        alert("hello test")
+        var searchValue = document.getElementById('search_id').value
+        alert(searchValue)
+
+        $.ajax({
+            url: '/tester/',
+            type: 'POST',
+            headers: { "X-CSRFToken": csrfmiddlewaretoken },
+            async: false,
+            cache: false,
+            processData: false,
+            error: function (jqXHR, status, err) {
+                alert("error")
+            },
+            success: function (response) {
+                document.getElementById('tester').innerHTML = response;
+
+                console.log(response)
+                alert("done")
+            }
+        });
+        return false;
+
+    };
+
+    var Search = function () {
+        var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+        alert("hello test")
+
+        $.ajax({
+            url: '/tester1/',
+            type: 'POST',
+            headers: { "X-CSRFToken": csrfmiddlewaretoken },
+            async: false,
+            cache: false,
+            processData: false,
+            error: function (jqXHR, status, err) {
+                alert("error")
+            },
+            success: function (response) {
+                document.getElementById('tester').innerHTML = response;
+
+                console.log(response)
+                alert("done")
+            }
+        });
+        return false;
+
+    };
+
+</script>
 
 <div id="react-app"></div>
 
-    {% include './Sorting.html' %}
-    {% include './Searching.html' %}
+<form>
+    {% csrf_token %}
+
+    <div style="height: 10px; padding: 10px"></div>
+    <h1 style="padding: 10px" class="text-center"> Team A algorithms</h1>
+
+
+    <div style="height: 10px; padding: 10px"></div>
+    <div style="padding: 10px">
+        <input id="server_pub_key" type="text">
+        <button class="btn btn-primary" type="button" onclick="generateSPK()">Sort</button>
+    </div>
+    <!-- <div style="height: 10px; padding: 10px"></div> -->
+    <div style="padding: 10px">
+        <input id="server_pub_key" type="text">
+        <button class="btn btn-primary" type="button" onclick="generateSPK()">Sort</button>
+    </div>
+    <!-- <div style="height: 10px; padding: 10px"></div> -->
+    <div style="padding: 10px">
+        <input id="search_id" type="text">
+        <button class="btn btn-primary" type="button" onclick="Search()">Search Customer</button>
+    </div>
+
+
+
+    <div id="tester"></div>
+</form>
+
+
 
 {% endblock %}

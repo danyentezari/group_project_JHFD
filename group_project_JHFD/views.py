@@ -12,38 +12,32 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
-from .forms import SortingForm
-
+from .forms import SortingForm, main
 
 def dashboard_main(request):
-
-    print("context 123132")
-    
-    context = {
-    }
-
-    print(context)
-
+    context = {}
     template = HttpResponse(loader.get_template('exampleapp/itworks.html').render(context=context, request=request))
-
-    return template
+    return template 
          
 def tester_main(request):
     
     form = SortingForm()
-
-    print("context")
-    
     context = {
             "form": form
         }
-
-    print(context)
-
-    template = HttpResponse(form)
-    #template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
-
+    #template = HttpResponse(form)
+    template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
     #return render_to_response('template.html', {'dictionary': my_dictionary}, context_instance=RequestContext(request)) 
+    return template
 
-
+def tester1_main(request):
+    
+    print(request)
+    form = main()
+    context = {
+            "form": form
+        }
+    #template = HttpResponse(form)
+    template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
+    #return render_to_response('template.html', {'dictionary': my_dictionary}, context_instance=RequestContext(request)) 
     return template

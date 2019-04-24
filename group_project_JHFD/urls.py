@@ -14,10 +14,8 @@ urlpatterns = [
 
     url(r'^$', views.dashboard_main, name='dashboard'),
     url(r'tester/', views.tester_main, name='tester_main'),
-
-    #path('', views.dashboard_main, name='exampleapp/itworks.html'),
-    # path('dashboard/', views.dashboard_main, name='dashboard_main'),
-    # path('dashboard/updateNotification', dashboard.update_notification, name='dashboard_main'),
+    url(r'tester1/', views.tester1_main, name='tester1_main'),
+   
 ]
 
 if settings.DEBUG:

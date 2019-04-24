@@ -1,58 +1,38 @@
-<!-- {% load render_table from django_tables2 %} -->
-<script type="text/javascript"> 
-
-    var generateSPK = function () {
-        var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-
-        alert("hello test")
-
-        $.ajax({
-            url: '/tester/',
-            type: 'POST',
-            headers: { "X-CSRFToken": csrfmiddlewaretoken },
-            async: false,
-            cache: false,
-            processData: false,
-            error: function (jqXHR, status, err) {
-                alert("error")
-            },
-            success: function (response) {
-                document.getElementById('server_pub_key').value = response;
-                console.log(response)
-                alert("done")
-            }
-        });
-        return false;
-
-    };
-
-</script>
-<section class="contact" id="contact-info">
-    {% csrf_token %}
-    <form action="" id="contact-form__" method="POST">
-        {% csrf_token %}
-
-        <head>
-            <title>List of Customers</title>
-        </head>
-
-        <body>
-            {% for row in form %}
-            <tr>
-                {% for item in row %}
-                <tr>
-                    <td>{{ item }}</td>
-                </tr>
-
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </body>
-
-        <input id="server_pub_key" type="text"  >
-
-        
-        <button class="btn btn-danger" type="button" onclick="generateSPK()">generate</button>
-    </form>
-    <button class="btn btn-danger" type="button" onclick="generateSPK()">generate</button>
-</section>
+<section class="contact bg-dark-grey" id="banner">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-white">
+                    <h1 class="text-center"> Results</h1>
+    
+                    <body>
+                        
+                    </body>
+    
+                    <table id="transactions-table" class="table table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Points</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for row in form %}
+                                <tr>
+                                    <tr>
+                                        <td>{{ row.first_name }}</td>
+                                        <td>{{ row.last_name }}</td>
+                                        <td>{{ row.loyalty_points }}</td>
+                                    </tr>
+            
+                                </tr>
+                                {% endfor %}
+    
+                        </tbody>
+    
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>

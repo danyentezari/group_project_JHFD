@@ -7,16 +7,6 @@ import pandas
 from array import *
 import django_tables2 as tables
 
-# lename="C:/Users/jeremye/Name.csv"
-# array=pandas.read_csv(lename)
-# namelist=pandas.read_csv(lename, header=None)
-# array=array.values.tolist()
-
-# class PersonTable(tables.Table):
-#     class Meta:
-#         model = CustomerModel
-
-
 def SortingForm():
     print("hello there")
     newDic = dict() 
@@ -140,7 +130,7 @@ def sortcolumn(self):
     countsilver=0
     countgold=0
     countplatinum=0
-    
+
     # for i in range(0,len(self.namelist)):
     #     self.Qtable.setItem(i,0,QTableWidgetItem(str(self.namelist.iloc[i,0])))
     #     self.Qtable.setItem(i,1,QTableWidgetItem(str(self.namelist.iloc[i,1])))
@@ -174,6 +164,12 @@ def click_SortDBalpha(self):
     
     self.sortcolumn()
 
+#this is the search section below
+
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
             
 def click_SortDBpoint(self):
     if len(self.namelist)<100:
@@ -232,6 +228,7 @@ class Customers:
 
 
 class Customer:
+
     def __init__(self, first_name, last_name, loyalty_points):
         self._first_name = first_name
         self._last_name = last_name
@@ -275,6 +272,7 @@ class Customer:
 
 
 class HashBasedSearch:
+
     def __init__(self, elements_to_add=None):
         # initialise the hash based and populate data structures
         self.array_size = len(elements_to_add)
@@ -356,12 +354,22 @@ def main():
             ["Jim", "Williams", "70"],
             ["Paulie", "Malignaggi", "3250"]]
 
+    print("jeremy")
     customer_hash_table = HashBasedSearch(elements_to_add)
     customer_look_up = "Tony Singh"
     first_name, last_name = customer_look_up.split(" ")
 
+    newDic = dict()
+    found = [] 
+
     found_customers = customer_hash_table.search(first_name, last_name)
     for foundCustomer in found_customers:
         print(foundCustomer)
+        found.append(foundCustomer)
+
+    print(newDic)
+    
+    return found
+  
 
 
