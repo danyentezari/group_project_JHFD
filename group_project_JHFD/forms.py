@@ -22,7 +22,8 @@ def LoadData():
     array=array.values.tolist()
     
     return sortcolumn(array)
-        
+
+# This function compare two strings and return TRUE if string A is bigger, FALSE if it is lower or equal.        
 def isStringBigger(A,B):
     lenA=len(A)
     lenB=len(B)
@@ -46,6 +47,7 @@ def isStringBigger(A,B):
     else:
         return False
 
+# This function uses insertion sort to sort a list alphabetically using as a reference the first element inside the tuples (the name)
 def InsertionSortalphabetical(array):
     for i in range(1, len(array)):
         temp = array[i]
@@ -56,7 +58,7 @@ def InsertionSortalphabetical(array):
         array[j] = temp      
     return array
 
-
+# This function uses merge sort to sort a list alphabetically using as a reference the first element inside the tuples (the name)
 def MergeSortalphabetical(array):
     if len(array)>1:
         middle = len(array)//2
@@ -87,6 +89,7 @@ def MergeSortalphabetical(array):
             k=k+1
     return array
 
+# This function uses insertion to sort a list by number of points using as a reference the second element inside the tuples
 def InsertionSort(array):
     for i in range(1, len(array)):
         temp = array[i]
@@ -97,7 +100,7 @@ def InsertionSort(array):
         array[j] = temp      
     return array
 
-
+# This function uses merge sort to sort a list by number of points using as a reference the second element inside the tuples
 def MergeSort(array):
     if len(array)>1:
         middle = len(array)//2
@@ -128,6 +131,7 @@ def MergeSort(array):
             k=k+1
     return array
 
+# This function separate the client into three types of users: Silver Gold and Platinum and order them based on the previous sorting approach used (by points or by name)
 def sortcolumn(namelist):
 
     newArraySilver = []
@@ -151,7 +155,7 @@ def sortcolumn(namelist):
           
     return newObject
 
-            
+# This function select the optimal alphabetical sorting method based on the size of the list              
 def click_SortDBalpha():
 
     dirname = os.path.dirname(__file__)
@@ -166,7 +170,8 @@ def click_SortDBalpha():
         namelist=namelist.values.tolist()
     
     return sortcolumn(namelist)
-            
+
+# This function select the optimal numerical sorting method based on the size of the list               
 def click_SortDBpoint():
     
     dirname = os.path.dirname(__file__)
@@ -293,9 +298,9 @@ class HashBasedSearch:
     def load_hash_table(self, elements_to_add):
         # Load the hash table with created Customer
         for i in range(len(elements_to_add)):
-            first_name = elements_to_add[i][0]
-            last_name = elements_to_add[i][1]
-            loyalty_point = elements_to_add[i][2]
+            first_name = elements_to_add[i]['firstname']
+            last_name = elements_to_add[i]['lastname']
+            loyalty_point = elements_to_add[i]['points']
             new_customer = Customer(first_name, last_name, loyalty_point)
             self.append(new_customer)
 
@@ -340,44 +345,17 @@ class HashBasedSearch:
 
 
 def main(searchValue):
-    elements_to_add = [
-            ["Bruce", "Armstrong", "2800"],
-            ["Doreen", "Bailey" , "50"],
-            ["Michael", "Barker" , "200"],
-            ["Anna", "Brown" , "32800"],
-            ["Peter", "Cook" , "2320"],
-            ["Paula", "Dixon" , "2500"],
-            ["Babara", "Hamilton" , "100"],
-            ["Claudia", "Hill" , "200"],
-            ["Maureen", "Holmes" , "300"],
-            ["Kyle", "Stone", "40"],
-            ["Paul", "Jenkins" , "600"],
-            ["Vanessa", "Johnson" , "60"],
-            ["James", "Jones" , "700"],
-            ["Kyle", "Stone", "777"],
-            ["Patrick", "Lawrence" , "2800"],
-            ["Adrian", "Lewis" , "5800"],
-            ["Nanny", "Morris" , "1000"],
-            ["Graham", "Reid" , "28"],
-            ["Ava", "Richardson" , "430"],
-            ["Hariet", "Robertson" , "2800"],
-            ["Anne", "Taylor" , "6800"],
-            ["Karen", "Turner" , "7800"],
-            ["Mark", "Palmer" , "200"],
-            ["Sharon", "Poole" , "900"],
-            ["Tony", "Singh" , "1800"],
-            ["Mary", "Smith" , "5800"],
-            ["Sheila", "Spencer" , "200"],
-            ["Kyle", "Stone" , "20"],
-            ["Kyle", "Stone", "30"],
-            ["Kyle", "Stone", "40"],
-            ["Kyle", "Stone", "50"],
-            ["Kyle", "Stone", "10020"],
-            ["Dawn", "Watson" , "40"],
-            ["Fred", "Wilkinson" , "800"],
-            ["Jim", "Williams" , "1000"],
-            ["Paulie", "Malignaggi", "3250"]]
+            
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'Name.csv')
+    namelist = pandas.read_csv(filename, header=None)
+    namelist = namelist.values.tolist()
 
+    elements_to_add = []
+    for i in range(len(namelist)):
+        first_name, last_name = namelist[i][0].split(" ")
+        elements_to_add.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
+    
     customer_hash_table = HashBasedSearch(elements_to_add)
     customer_look_up = searchValue
     first_name, last_name = customer_look_up.split(" ")
