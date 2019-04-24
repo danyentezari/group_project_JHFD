@@ -36,6 +36,10 @@ gunicorn = "*"
 whitenoise = "*"
 psutil = "*"
 ipython = "*"
+numpy = "*"
+scipy = "*"
+pandas = "*"
+python-decouple = "*"
 
 
 [requires]
