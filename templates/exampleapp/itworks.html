@@ -70,29 +70,6 @@
 
     };
 
-    var generateSPK = function () {
-        var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-       
-        var searchValue = document.getElementById('search_id').value
-        
-        $.ajax({
-            url: '/tester/',
-            type: 'POST',
-            headers: { "X-CSRFToken": csrfmiddlewaretoken },
-            async: false,
-            cache: false,
-            processData: false,
-            error: function (jqXHR, status, err) {
-                alert("error")
-            },
-            success: function (response) {
-                document.getElementById('tester').innerHTML = response;
-            }
-        });
-        return false;
-
-    };
-
     var Search = function () {
         var csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
