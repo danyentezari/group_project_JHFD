@@ -83,5 +83,5 @@ def Search(request):
             "form": form,
             "sortType" : "Hash-Based Search"
         }
-    template = HttpResponse(loader.get_template('exampleapp/searching.html').render(context=context, request=request))
+    template = HttpResponse(loader.get_template('exampleapp/Searching.html').render(context=context, request=request))
     return template
