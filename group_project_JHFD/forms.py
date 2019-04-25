@@ -155,7 +155,7 @@ def sortcolumn(namelist):
         if namelist[i][1] > 5000:
             first_name, last_name = namelist[i][0].split(" ")
             newArrayPlatinum.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
-        if namelist[i][1] > 1000:
+        elif namelist[i][1] > 1000 and namelist[i][1] < 5000:
             first_name, last_name = namelist[i][0].split(" ")
             newArraySilver.append({'firstname': first_name, 'lastname': last_name, 'points': namelist[i][1]})
         else:
